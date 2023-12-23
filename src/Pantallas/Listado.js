@@ -70,7 +70,7 @@ const Listado = () => {
                   />
               </View>
                  <Modal visible = {modalVisible}>
-                   <View>
+                   <View style={styles.modalCard}>
                      <Text>¿Seguro que quiere eliminar?</Text>
                      <Text>{productSelected.title}{productSelected.price}</Text>
                      <Button title="Borrar" onPress={handlerDelete}/>
@@ -120,4 +120,11 @@ const styles = StyleSheet.create({
       borderRadius: 5,
   
   },
+  modalCard:{
+        flex:1,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        
+  }
 })
