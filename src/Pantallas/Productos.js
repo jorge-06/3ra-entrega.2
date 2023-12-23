@@ -1,15 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
+import Header from '../Componentes/Header'
 
 
-const ItemListCategories = () => {
+const Productos = () => {
   return (
+    <>
+    <Header title={"Productos"}/>
     <View style={styles.container}>
-      <Text>ItemListCategories</Text>
+      <Text>Proximamente</Text>
     </View>
+    </>
   )
 }
 
-export default ItemListCategories
+export default Productos
 
 const styles = StyleSheet.create({
     container:{

@@ -1,37 +1,61 @@
 
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import {useFonts} from "expo-font"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Colores } from './src/Global/Colores';
 
+
+import Listado from "./src/Pantallas/Listado";
+import Productos from './src/Pantallas/Productos';
+import Calendario from './src/Pantallas/Calendario';
+import Header from "./src/Componentes/Header";
 
 const Stack = createNativeStackNavigator();
 
-const Inicio = (navigation) => {
+const Inicio = ({navigation}) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Inicio Screen</Text>
-      <Button title="Home" onPress={()=> navigation.navigate ("Listado")}/>
-    </View>
+    <>
+      <Header title={"Home"}/>
+      <View>
+        <Pressable onPress={()=> {navigation.navigate("Listado")}}>
+          <Text style={styles.container}>Listado</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <Pressable onPress={()=> {navigation.navigate("Productos")}}>
+          <Text style={styles.container}>Productos en Stock</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <Pressable onPress={()=> {navigation.navigate("Calendario")}}>
+          <Text style={styles.container}>Calendario</Text>
+        </Pressable>
+      </View>
+    </>
   );
 }
 
-const Listado = (navigation) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Listado Screen</Text>
-    </View>
-  );
-}
 const App = () => {
-
+  const [fontLoaded] = useFonts ({
+    BebasNeue: require ("./assets/Fuentes/BebasNeue-Regular.ttf")
+  })
+  if (!fontLoaded) return null 
   return (
     <>
       <StatusBar/>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions = {{headerShown : false}}>
+          
           <Stack.Screen name="Inicio" component={Inicio} />
           <Stack.Screen name="Listado" component={Listado} />
+          <Stack.Screen name="Productos" component={Productos} />
+          <Stack.Screen name="Calendario" component={Calendario} />
+        
         </Stack.Navigator>
       </NavigationContainer>
 
@@ -42,10 +66,13 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'start',
-  },
+  container:{
+    backgroundColor: Colores.colorTerciario,
+    width: "80%",
+    marginHorizontal: "10%",
+    margin: "5%",
+    padding: "5%",
+    alignItems: "center",
+    elevation: 25,
+}
 });

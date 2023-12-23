@@ -2,6 +2,8 @@ import { useState } from "react"
 import { StyleSheet, View, TextInput, Pressable, FlatList, Text, Modal, Button } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { Colores } from '../Global/Colores'
+import Header from "../Componentes/Header";
+
 import uuid from 'react-native-uuid';
 
 
@@ -35,7 +37,11 @@ const Listado = () => {
   }
 
 
-  return <View style={styles.container}>
+  return(
+         <>
+         <Header title={"Listado"}/>
+         <View style={styles.container}>
+              
               <View style = {styles.barraSup}>
                   <TextInput style = {styles.buscador}
                              placeholder="Producto"
@@ -72,7 +78,8 @@ const Listado = () => {
                    </View>
                  </Modal>
          </View>
-
+         </>
+  )
 }
 
 export default Listado
@@ -83,7 +90,6 @@ const styles = StyleSheet.create({
     with: "100%",
     justifyContent: "start",
     alignItems: "center",
-    borderRadius: 5,
   },
   barraSup: {
     flexDirection: "row",
