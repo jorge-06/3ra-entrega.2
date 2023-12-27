@@ -24,6 +24,5 @@ const estilos = StyleSheet.create({
     },
     text:{
       fontSize: 40,
-      fontFamily: "BebasNeue",
     }
 })
